@@ -20,13 +20,20 @@ namespace DesafioFundamentos.Models
             string placa = "";
             placa = Console.ReadLine();
             placa = placa.ToUpper();
-            if(ValidarPlaca(placa))
-            {
-                veiculos.Add(placa);
-            }
+            // Verifica se já existe um veículo estacionado com a placa indicada
+            if (!veiculos.Any(x => x.ToUpper() == placa))
+                //Valida a placa de acordo com o novo padrão do Mercosul
+                if(ValidarPlaca(placa))
+                {
+                    veiculos.Add(placa);
+                }
+                else
+                {
+                    Console.WriteLine("Placa inválida. Por favor, retorne ao Menu e insira uma placa do Mercosul válida Exemplo: [AAA0A00] na opção 1 - Cadastrar veículo.");
+                }
             else
             {
-                Console.WriteLine("Placa inválida. Por favor, retorne ao Menu e insira insira uma placa do Mercosul válida na opção 1 - Cadastrar veículo.");
+                Console.WriteLine("Esse veículo já está dentro do estacionamento");
             }
 
         }
