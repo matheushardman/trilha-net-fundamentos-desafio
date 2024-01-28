@@ -1,14 +1,13 @@
-# DIO - Trilha .NET - Fundamentos
-www.dio.me
+# DIO - Trilha .NET - Desafio Fundamentos
+O desafio consiste em construir um sistema para estacionamento que será utilizado para gerenciar veículos estacionados, podendo assim adicionar um veículo, listar os veículos que estão estacionados e remover um veículo do mesmo (calculando o valor cobrado durante o período de tempo estacionado).
 
-## Desafio de projeto
-Para este desafio, você precisará usar seus conhecimentos adquiridos no módulo de fundamentos, da trilha .NET da DIO.
+### :desktop_computer: Tecnologias Utilizadas
 
-## Contexto
-Você foi contratado para construir um sistema para um estacionamento, que será usado para gerenciar os veículos estacionados e realizar suas operações, como por exemplo adicionar um veículo, remover um veículo (e exibir o valor cobrado durante o período) e listar os veículos.
+- C#
+- .NET
 
-## Proposta
-Você precisará construir uma classe chamada "Estacionamento", conforme o diagrama abaixo:
+## Requisitos
+Proposta: Construir uma classe chamada "Estacionamento", conforme o diagrama abaixo:
 ![Diagrama de classe estacionamento](diagrama_classe_estacionamento.png)
 
 A classe contém três variáveis, sendo:
@@ -33,6 +32,26 @@ Por último, deverá ser feito um menu interativo com as seguintes ações imple
 3. Listar veículos
 4. Encerrar
 
+### Solução
 
-## Solução
-O código está pela metade, e você deverá dar continuidade obedecendo as regras descritas acima, para que no final, tenhamos um programa funcional. Procure pela palavra comentada "TODO" no código, em seguida, implemente conforme as regras acima.
+O código original fornecido foi ajustado para obedecer as regras descritas acima utilizando os fundamentos de C# e .NET, as variáveis precoInicial e precoPorHora foram definidas como private (garantindo o encapsulamento) e um construtor foi definido para que essas duas variáveis sejam indicadas na instância de um objeto Estacionamento. Além das regras estabelecidas, no método AdicionarVeiculo foram implementadas duas melhorias: A verificação se um veículo com aquela placa já estaria estacionado para evitar erros de digitação do usuário do sistema, já a segunda melhoria foi a validação da placa do veículo de acordo com o novo modelo do Mercosul.
+
+## Instruções de Uso
+
+1. Clonar o repositório atual para sua máquina local
+
+   `git clone https://github.com/matheushardman/trilha-net-fundamentos-desafio.git`
+
+2. Caso não tenha o .NET 6.0 ou superior instalado, certifique-se instalar, você pode encontrá-lo em:
+
+   `https://dotnet.microsoft.com/pt-br/download/dotnet/6.0`
+
+3. Abra o projeto clonado em sua IDE ou editor de código-fonte de preferência
+
+4. Abra o terminal e vá para pasta DesafioFundamentos
+
+   `cd DesafioFundamentos`
+
+5. Execute o projeto com o seguinte comando
+
+   `dotnet run`
