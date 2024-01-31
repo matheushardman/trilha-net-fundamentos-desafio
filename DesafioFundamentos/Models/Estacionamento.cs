@@ -29,11 +29,11 @@ namespace DesafioFundamentos.Models
                 }
                 else
                 {
-                    Console.WriteLine("Placa inválida. Por favor, retorne ao Menu e insira uma placa do Mercosul válida Exemplo: [AAA0A00] na opção 1 - Cadastrar veículo.");
+                    Console.WriteLine("Placa inválida. Por favor, retorne ao Menu e insira uma placa válida na opção 1 - Cadastrar veículo. Exemplo: [LLLNLNN] ou [LLL-NNNN] onde L é letra e N é número");
                 }
             else
             {
-                Console.WriteLine("Esse veículo já está dentro do estacionamento");
+                Console.WriteLine("Esse veículo já está dentro do estacionamento, verifique se a placa está correta");
             }
 
         }
@@ -44,18 +44,26 @@ namespace DesafioFundamentos.Models
 
             string placa = "";
             placa = Console.ReadLine();
+            placa = placa.ToUpper();
 
             // Verifica se o veículo existe
-            if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
+            if (veiculos.Any(x => x.ToUpper() == placa))
             {
-                Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
-                int horas = 0;
-                decimal valorTotal = 0; 
-                horas = Convert.ToInt32(Console.ReadLine());
-                valorTotal = precoInicial + precoPorHora * horas;
-                veiculos.Remove(placa);
-
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                try
+                {
+                    Console.WriteLine("Para cada fração de hora, considere uma hora a mais para o veículo estacionado. Exemplo: Para 3h10min, considere o 4 horas estacionadas");
+                    Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
+                    int horas = 0;
+                    decimal valorTotal = 0; 
+                    horas = Convert.ToInt32(Console.ReadLine());
+                    valorTotal = precoInicial + precoPorHora * horas;
+                    veiculos.Remove(placa);
+                    Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                }
+                catch(FormatException ex)
+                {
+                    Console.WriteLine($"Você digitou as horas em formato não permitido, por favor, digite um número inteiro de horas. {ex.Message}");
+                }
             }
             else
             {
@@ -82,8 +90,8 @@ namespace DesafioFundamentos.Models
 
         public bool ValidarPlaca(string placa)
         {
-            string placaMercosul = @"^[A-Z]{3}[0-9][A-Z][0-9]{2}$";
-            bool validacaoPlaca = Regex.IsMatch(placa, placaMercosul);
+            string modeloPlaca = @"^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$|^[A-Z]{3}-[0-9]{4}$";
+            bool validacaoPlaca = Regex.IsMatch(placa, modeloPlaca);
             return validacaoPlaca;
         }
     }
