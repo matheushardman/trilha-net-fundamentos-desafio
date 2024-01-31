@@ -51,7 +51,7 @@ namespace DesafioFundamentos.Models
             {
                 try
                 {
-                    Console.WriteLine("Para cada fração de hora, considere uma hora a mais para o veículo estacionado. Exemplo: Para 3h10min, considere o 4 horas estacionadas");
+                    Console.WriteLine("Para cada fração de hora, considere uma hora a mais para o veículo estacionado. Exemplo: Para 3h10min, considere 4 horas estacionadas");
                     Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
                     int horas = 0;
                     decimal valorTotal = 0; 

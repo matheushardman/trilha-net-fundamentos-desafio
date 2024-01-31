@@ -1,6 +1,8 @@
 # DIO - Trilha .NET - Desafio Fundamentos
 O desafio consiste em construir um sistema para estacionamento que será utilizado para gerenciar veículos estacionados, podendo assim adicionar um veículo, listar os veículos que estão estacionados e remover um veículo do mesmo (calculando o valor cobrado durante o período de tempo estacionado).
 
+Este projeto foi desenvolvido como avaliação parcial do Bootcamp Decola Tech Avanade 2024, em parceria com a DIO, com o objetivo de praticar os conteúdos ensinados no Bootcamp.
+
 ### :desktop_computer: Tecnologias Utilizadas
 
 - C#
@@ -42,7 +44,7 @@ O código original fornecido foi ajustado para obedecer as regras descritas acim
 
    `git clone https://github.com/matheushardman/trilha-net-fundamentos-desafio.git`
 
-2. Caso não tenha o .NET 6.0 ou superior instalado, certifique-se instalar, você pode encontrá-lo em:
+2. Caso não tenha o .NET 6.0 ou superior instalado, certifique-se em instalar, você pode encontrá-lo em:
 
    `https://dotnet.microsoft.com/pt-br/download/dotnet/6.0`
 
