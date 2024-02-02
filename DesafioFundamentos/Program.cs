@@ -47,7 +47,7 @@ string placa = string.Empty;
             break;
 
         case "4":
-            es.Historico();
+            es.GerarHistorico();
             break;
 
         case "5":

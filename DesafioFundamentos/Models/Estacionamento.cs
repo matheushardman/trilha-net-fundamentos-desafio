@@ -1,31 +1,7 @@
-using System.Dynamic;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace DesafioFundamentos.Models
 {
-    public class Ticket
-    {
-        private string placa = string.Empty;
-        private DateTime horarioEntrada;
-        private DateTime horarioSaida;
-        private decimal valor;
-        public Ticket(string placa, DateTime horarioEntrada, DateTime horarioSaida, decimal valor)
-        {
-            this.placa = placa;
-            this.horarioEntrada = horarioEntrada;
-            this.horarioSaida = horarioSaida;
-            this.valor = valor;
-        }
-        public override string ToString()
-        {
-            return $"Placa: {placa}\nHorario de Entrada: {horarioEntrada}\nHorario de Saida: {horarioSaida}\nValor do estacionamento: R${valor}";
-        }
-        public decimal GetValor()
-        {
-            return valor;
-        }
-    }
     public class Estacionamento
     {
         private decimal precoInicial = 0;
@@ -38,16 +14,14 @@ namespace DesafioFundamentos.Models
             this.precoInicial = precoInicial;
             this.precoPorHora = precoPorHora;
         }
-
         public void AdicionarVeiculo(string placa)
         {
             // Verifica se já existe um veículo estacionado com a placa indicada
             if (!veiculos.ContainsKey(placa))
             {
-                //Valida a placa de acordo com o padrão de placa utilizado no Brasil, tanto no modelo antigo quanto no novo modelo do Mercosul
+                //Chama o método que valida a placa de acordo com o padrão de placa utilizado no Brasil, tanto no modelo antigo quanto no novo modelo do Mercosul
                 if(ValidarPlaca(placa))
                 {
-                    //veiculos.Add(placa);
                     veiculos.Add(placa, DateTime.Now);
                 }
                 else
@@ -64,7 +38,7 @@ namespace DesafioFundamentos.Models
 
         public void RemoverVeiculo(string placa)
         {
-            // Verifica se o veículo existe
+            // Verifica se o veículo está presente no estacionamento
             if(veiculos.ContainsKey(placa))
             {
                     //var horarioEntrada = new DateTime(2024, 01, 30, 13, 30, 00);
@@ -73,10 +47,10 @@ namespace DesafioFundamentos.Models
                     TimeSpan intervaloTempo = horarioSaida.Subtract(horarioEntrada);
                     int totalHoras = (int)Math.Ceiling(intervaloTempo.TotalHours);
                     decimal valorTotal = precoInicial + precoPorHora * totalHoras;
-                    veiculos.Remove(placa);
                     Ticket ticket = new Ticket(placa, horarioEntrada, horarioSaida, valorTotal);
                     historicoTickets.Add(ticket);
-                    Console.WriteLine($"O veículo {placa} foi removido, o tempo estacionado foi de {totalHoras} horas e o preço total foi de: R$ {valorTotal}");
+                    veiculos.Remove(placa);
+                    Console.WriteLine($"O veículo {placa} foi removido, o tempo estacionado foi de {totalHoras} hora(s) e o preço total foi de: R$ {valorTotal}");
             }
             else
             {
@@ -101,7 +75,7 @@ namespace DesafioFundamentos.Models
             }
         }
 
-        public void Historico()
+        public void GerarHistorico()
         {
             Console.Clear();
             decimal somaValorTicket = 0;
@@ -118,7 +92,7 @@ namespace DesafioFundamentos.Models
 
         private bool ValidarPlaca(string placa)
         {
-            string modeloPlaca = @"^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$|^[A-Z]{3}-[0-9]{4}$";
+            string modeloPlaca = @"^[A-Z]{3}[0-9][A-Z][0-9]{2}$|^[A-Z]{3}-[0-9]{4}$";
             bool placaValida = Regex.IsMatch(placa, modeloPlaca);
             return placaValida;
         }
