@@ -2,14 +2,14 @@ using DesafioFundamentos.Models;
 
 namespace DesafioFundamentosTestes;
 
-public class UnitTest1
+public class EstacionamentoTestes
 {
     [Fact]
     public void DeveAdicionarVeiculoComPlacaValida()
     {
         //Arrange
-        var estacionamento = new Estacionamento(5,2);
-        var horarioEntrada = DateTime.Now;
+        Estacionamento estacionamento = new Estacionamento(5,2);
+        //var horarioEntrada = DateTime.Now;
         var placa = "AAA-0000";
         //Act
         estacionamento.AdicionarVeiculo(placa);
