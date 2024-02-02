@@ -30,7 +30,7 @@ namespace DesafioFundamentos.Models
     {
         private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
-        public Dictionary<string, DateTime> veiculos = new Dictionary<string, DateTime>();
+        private Dictionary<string, DateTime> veiculos = new Dictionary<string, DateTime>();
         private List<Ticket> historicoTickets = new List<Ticket>();
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
@@ -45,9 +45,8 @@ namespace DesafioFundamentos.Models
             if (!veiculos.ContainsKey(placa))
             {
                 //Valida a placa de acordo com o padrão de placa utilizado no Brasil, tanto no modelo antigo quanto no novo modelo do Mercosul
-                if(ValidarPlaca(placa))
+                if(!VeiculoJaEstacionado(placa) && ValidarPlaca(placa))
                 {
-                    //veiculos.Add(placa);
                     veiculos.Add(placa, DateTime.Now);
                 }
                 else
@@ -121,6 +120,11 @@ namespace DesafioFundamentos.Models
             string modeloPlaca = @"^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$|^[A-Z]{3}-[0-9]{4}$";
             bool placaValida = Regex.IsMatch(placa, modeloPlaca);
             return placaValida;
+        }
+
+        public bool VeiculoJaEstacionado(string placa)
+        {
+            return veiculos.ContainsKey(placa);
         }
     }
 }
